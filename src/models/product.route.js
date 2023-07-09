@@ -42,6 +42,7 @@ try{
         return res.send(x)
     }
     const product=await Productmodel.findOne({_id:id});
+      await redis.set(`${id}`,JSON.stringify(product))
     return res.send(product)
 }catch(e){
 return res.send(e.message)
